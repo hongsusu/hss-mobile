@@ -1,0 +1,18 @@
+@import "./variables";
+// 从给定的 px 单位转到 rem 单位
+// 默认的 root em 为 100px
+@function pxToRem($size, $rem: $GlobalRootEmSize1) {
+  $remSize: $size / $rem;
+  @return #{$remSize}rem;
+}
+// 由于 IE 9 & IE 10 的 font-size 属性不支持 rem 单位(声明会被忽略),
+// 所以额外声明 px 单位的用来给不支持 rem 的浏览器作为 fallback.
+//ps:
+//h1 {
+//  @include fontSizeToRem(36px);
+//}
+//这句是自己加的 网易和淘宝的font-size可能需要额外的媒介查询，并且font-size不使用rem
+@mixin fontSizeToRem($size) {
+  font-size: $size;
+  font-size: pxToRem($size);
+}

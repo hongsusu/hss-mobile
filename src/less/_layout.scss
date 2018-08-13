@@ -1,0 +1,62 @@
+/**
+ * layout 工具库
+ *
+ * 命名规则:
+ * 1. layout- 为布局用工具库的统一前缀标识符
+ * 2. m 和 p 为 CSS 属性标识符, 分别代表 margin 和 padding
+ * 3. w h t r b l 分别代表 width height top right bottom left
+ * 4. 最后一位为数字位, 表示 CSS 属性的值
+ *
+ * 示例:
+ *      layout-m10  {margin: 10rem;}
+ *      layout-mw10  {margin-left:10rem;margin-right:10rem;}
+ *      layout-pr20  {padding-right:20rem;}
+ */
+@for $i from 1 to 11 {
+  .layout-m#{$i * 5} {
+    margin: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-mw#{$i * 5} {
+    margin-left: #{$i * 5 / $GlobalRootEmSize}rem;
+    margin-right: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-mh#{$i * 5} {
+    margin-top: #{$i * 5 / $GlobalRootEmSize}rem;
+    margin-bottom: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-mt#{$i * 5} {
+    margin-top: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-mr#{$i * 5} {
+    margin-right: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-mb#{$i * 5} {
+    margin-bottom: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-ml#{$i * 5} {
+    margin-left: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-p#{$i * 5} {
+    padding: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-pw#{$i * 5} {
+    padding-left: #{$i * 5 / $GlobalRootEmSize}rem;
+    padding-right: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-ph#{$i * 5} {
+    padding-top: #{$i * 5 / $GlobalRootEmSize}rem;
+    padding-bottom: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-pt#{$i * 5} {
+    padding-top: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-pr#{$i * 5} {
+    padding-right: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-pb#{$i * 5} {
+    padding-bottom: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+  .layout-pl#{$i * 5} {
+    padding-left: #{$i * 5 / $GlobalRootEmSize}rem;
+  }
+}

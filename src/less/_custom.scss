@@ -1,0 +1,6 @@
+/* 页默认样式 */
+
+body {
+  @include fontSizeToRem(16px);
+  font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Segoe UI", "Microsoft Yahei", Tahoma, Arial, STHeiti, sans-serif;
+}

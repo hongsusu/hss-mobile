@@ -1,0 +1,91 @@
+/*第一种*/
+//@function pxToRem($size, $rem: 750) {
+//  $remSize: ($size / $rem * 10) * 1rem;
+//  @return #{$remSize}rem;
+//}
+//@mixin font($font-size) {
+//
+//  $size: $font-size;
+//
+//  font-size: $size;
+//
+//  [data-dpr="2"] & {
+//    font-size: $size * 2;
+//  }
+//
+//  [data-dpr="3"] & {
+//    font-size: $size * 3;
+//  }
+//}
+/*第二种*/
+@mixin px2rem($property,$px-values,$baseline-px: 75px,$support-for-ie:false) {
+  //Conver the baseline into rems
+  $baseline-rem: $baseline-px / 1rem * 1;
+  //Print the first line in pixel values
+  @if $support-for-ie {
+    #{$property}: $px-values;
+  }
+  //if there is only one (numeric) value, return the property/value line for it.
+  @if type-of($px-values) == 'number' {
+    #{$property}: $px-values / $baseline-rem;
+  }
+
+  @else {
+    //Create an empty list that we can dump values into
+    $rem-values:();
+
+    @each $value in $px-values {
+      // If the value is zero or not a number, return it
+      @if $value == 0 {
+        $rem-values: append($rem-values, $value);
+      }
+
+      @else {
+        $rem-values: append($rem-values, $value / $baseline-rem);
+      }
+    }
+    // Return the property and its list of converted values
+    #{$property}: $rem-values;
+  }
+}
+@mixin font($font-size) {
+
+  $size: $font-size;
+
+  font-size: $size;
+
+  [data-dpr="2"] & {
+    font-size: $size * 2;
+  }
+
+  [data-dpr="3"] & {
+    font-size: $size * 3;
+  }
+}
+
+/*less写的但是less版本必须是2.7.2
+有可能是less-loader不支持3.0.0以上版本的less
+
+ .hello {
+    width: ~`px2rem(100)`;
+  }
+   .px2rem(32);
+*/
+/*@fn: ~`px2rem = function(px, base){return base?(px/base*10)+'rem':(px/75)+'rem'}`;
+
+.px2rem(@px, @base: 750) {
+  @rem: (@px / @base * 10) * 1rem;
+}
+.fontdpr(@font-size) {
+  font-size: @font-size;
+  [data-dpr="2"] &{
+    font-size: @font-size*2;
+  }
+  [data-dpr="3"] &{
+    font-size: @font-size*3;
+  }
+}
+
+.font(@font-size) {
+  .fontdpr(@font-size);
+}*/
